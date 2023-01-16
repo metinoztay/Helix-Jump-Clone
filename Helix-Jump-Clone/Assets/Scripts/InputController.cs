@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IDragHandler
+public class InputController : MonoBehaviour, IDragHandler
 {
     [SerializeField] Transform main;
-    [SerializeField] float speed;
-    private float startPoint;
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        startPoint = eventData.position.x;
-    }
-
+    [SerializeField] float speed;   
     public void OnDrag(PointerEventData eventData)
     {
         var rotation = main.rotation;
@@ -20,17 +14,5 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         current -= eventData.delta.x * speed;
         rotation.eulerAngles = new Vector3(0, current, 0);
         main.rotation= rotation;
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-       
-    }
-
-   
+    }   
 }

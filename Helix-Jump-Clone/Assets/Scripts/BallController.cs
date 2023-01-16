@@ -5,12 +5,12 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
    [SerializeField] private Rigidbody myRigidbody;
-   [SerializeField] private float velocityLimit;
+   [SerializeField] private Vector2 velocityLimitMinMax;
 
     private void FixedUpdate()
     {
         var vertical = myRigidbody.velocity;
-        vertical.y = Mathf.Clamp(vertical.y, -velocityLimit, +velocityLimit);
+        vertical.y = Mathf.Clamp(vertical.y, velocityLimitMinMax.x, velocityLimitMinMax.y);
         myRigidbody.velocity = vertical;
 
     }
